@@ -18,21 +18,26 @@ def drop_high_missing(df, threshold=50):
 
 def interpolate_missing(df):
     # apply spline interpolation to fill missing values smoothly (best for time-series data like closing prices and market cap)
-    return df.interpolate(method='spline', order=2)
+    numeric_cols = df.select_dtypes(include=['number']).columns
+    df[numeric_cols] = df[numeric_cols].interpolate(method='spline', order=2)
+    
+    return df
 
 def forward_fill_missing(df):
     # apply forward fill to handle structured missing values (best for volume data where interpolation is not ideal)
-    return df.ffill()
+    df.ffill()
+    return df
 
 def mean_imputation_missing(df):
     # fill missing column values with column mean
-    return df.fillna(df.mean(numeric_only=True), inplace=True)
+    df.fillna(df.mean(numeric_only=True), inplace=True)
+    
+    return df 
 
 def standardize_data(df):
     # standardize numerical data using z-score normalization
     scaler = StandardScaler()
     df.iloc[:, :] = scaler.fit_transform(df.iloc[:, :])
-    
     return df
 
 def save_data(df, file_path):
