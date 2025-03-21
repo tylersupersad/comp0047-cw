@@ -6,8 +6,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from utils import load_data, drop_high_missing, mean_imputation_missing, standardize_data, save_data
 
 # define the file paths
-input_path = "../../../data/raw/energy/energy.csv"
-output_path = "../../../data/clean/energy/clean_energy.csv"
+input_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../data/raw/energy/energy.csv"))
+output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../data/clean/energy/clean_energy.csv"))
 
 # load the dataset
 df = load_data(input_path)
