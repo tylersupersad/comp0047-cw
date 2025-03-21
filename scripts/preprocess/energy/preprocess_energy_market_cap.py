@@ -3,7 +3,7 @@ import sys
 import pandas as pd
 
 # add the scripts/ directory to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from utils import load_data, drop_high_missing, interpolate_missing, forward_fill_missing, save_data
 
 # Define the file paths

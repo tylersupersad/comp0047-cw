@@ -2,7 +2,7 @@ import os
 import sys
 
 # add the scripts/ directory to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from utils import load_data, drop_high_missing, standardize_data, mean_imputation_missing, save_data
 
 # define the file paths
