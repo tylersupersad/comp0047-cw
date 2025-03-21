@@ -5,9 +5,9 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 from utils import load_data, drop_high_missing, interpolate_missing, forward_fill_missing, save_data
 
-# define file paths
-input_path = "../../../data/raw/technology/technology_close.csv"
-output_path = "../../../data/clean/technology/clean_technology_close.csv"
+# define the file paths
+input_path = "../../../data/raw/energy/energy_close.csv"
+output_path = "../../../data/clean/energy/clean_energy_close.csv"
 
 # load dataset
 df = load_data(input_path)

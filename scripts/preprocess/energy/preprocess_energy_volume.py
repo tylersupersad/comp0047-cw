@@ -1,14 +1,19 @@
+import os
+import sys
+
+# add the scripts/ directory to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 from utils import load_data, drop_high_missing, forward_fill_missing, mean_imputation_missing, save_data
 
 # define the file paths
 input_path = "../../../data/raw/energy/energy_volume.csv"
-output_path = "../../../data/cleaned/energy/cleaned_energy_volume.csv"
+output_path = "../../../data/clean/energy/clean_energy_volume.csv"
 
 # load the dataset
 df = load_data(input_path)
 
 # ensure dataset is sorted by date (ascending)
-df.sort_values(by=df.columns[0], inplace=True)
+df.sort_values(by="Date", inplace=True)
 
 # drop columns with excessive missing values
 df = drop_high_missing(df)

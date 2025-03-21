@@ -6,9 +6,9 @@ import pandas as pd
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 from utils import load_data, drop_high_missing, interpolate_missing, forward_fill_missing, save_data
 
-# define the file paths
-input_path = "../../../data/raw/technology/technology_market_cap.csv"
-output_path = "../../../data/clean/technology/clean_technology_market_cap.csv"
+# Define the file paths
+input_path = "../../../data/raw/energy/energy_market_cap.csv"
+output_path = "../../../data/clean/energy/clean_energy_market_cap.csv"
 
 # load the dataset
 df = load_data(input_path)
@@ -24,7 +24,7 @@ df['date'] = pd.to_datetime(df['date'], errors='coerce')
 df.sort_values(by=['ticker', 'date'], ascending=[True, False], inplace=True)
 
 # drop columns with excessive missing values
-# df = drop_high_missing(df)
+df = drop_high_missing(df)
 
 # apply spline interpolation to fill missing values per ticker
 df = df.groupby('ticker').apply(lambda group: interpolate_missing(group))
