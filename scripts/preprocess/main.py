@@ -1,19 +1,24 @@
 import os
+from utils import read_and_parse_csv, reshape_and_merge_raw_data, clean_and_transform_data
 
-# list of preprocessing scripts to run
-scripts = [
-    "technology/preprocess_technology_close.py",
-    "technology/preprocess_technology_volume.py",
-    "technology/preprocess_technology_market_cap.py",
-    "technology/preprocess_technology.py",
-    "energy/preprocess_energy_close.py",
-    "energy/preprocess_energy_volume.py",
-    "energy/preprocess_energy_market_cap.py",
-    "energy/preprocess_energy.py"
-]
+def run_pipeline_for_sector(sector, root_dir="../../data/raw"):
+    # load raw csvs
+    close = read_and_parse_csv(os.path.join(root_dir, sector, f"{sector}_close.csv"))
+    volume = read_and_parse_csv(os.path.join(root_dir, sector, f"{sector}_volume.csv"))
+    cap = read_and_parse_csv(os.path.join(root_dir, sector, f"{sector}_market_cap.csv"))
 
-# run each preprocessing script
-for script in scripts:
-    os.system(f"python {script}")
+    # merge raw data
+    merged = reshape_and_merge_raw_data(close, volume, cap)
+    merged.to_csv(f"{sector}_data_aligned.csv", index=False)
 
-print("[+] All preprocessing scripts completed successfully!")
+    # apply cleaning and save result
+    cleaned = clean_and_transform_data(merged)
+    cleaned.to_csv(f"clean_{sector}.csv", index=False)
+
+    print(f"[✓] Finished preprocessing for {sector}: {len(cleaned):,} rows saved to clean_{sector}.csv")
+
+if __name__ == "__main__":
+    # preprocess energy data
+    #run_pipeline_for_sector("energy")
+    # preprocess technology data
+    run_pipeline_for_sector("technology")
