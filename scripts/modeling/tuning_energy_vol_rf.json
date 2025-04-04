@@ -1,0 +1,15 @@
+{
+  "model": "random_forest",
+  "target": "volatility_t+1",
+  "best_params": {
+    "max_depth": 15,
+    "max_features": "sqrt",
+    "min_samples_leaf": 3,
+    "n_estimators": 100
+  },
+  "metrics": {
+    "rmse": 0.003549335655826714,
+    "mae": 0.0014915024853119053,
+    "r2": 0.9759861054337284
+  }
+}
