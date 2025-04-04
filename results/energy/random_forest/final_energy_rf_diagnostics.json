@@ -1,0 +1,28 @@
+{
+  "model": "random_forest",
+  "sector": "energy",
+  "target": "volatility_t+1",
+  "metrics": {
+    "rmse": 0.0036967470828196216,
+    "mae": 0.0017149988962377016,
+    "r2": 0.9746191119706552
+  },
+  "importances": {
+    "return_t": 0.018230068796443188,
+    "volatility_t": 0.42050282331701594,
+    "volume_t": 0.004109899620477888,
+    "market_cap": 0.03634063913504155,
+    "return_t-1": 0.020261277099088426,
+    "return_t-2": 0.014228323919545602,
+    "volatility_t-1": 0.24082028095125868,
+    "volatility_t-2": 0.20655914588516097,
+    "volume_t-1": 0.002948970697529545,
+    "volume_t-2": 0.00263436308367364,
+    "volume_rolling_mean_5": 0.005693426174793603,
+    "market_cap_rolling_mean_5": 0.027670781319971166
+  },
+  "diagnostics": {
+    "shapiro_p": 1.0970031905759126e-106,
+    "ljung_box_p": 0.0
+  }
+}

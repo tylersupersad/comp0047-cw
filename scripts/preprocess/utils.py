@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 
 def read_and_parse_csv(path):
@@ -68,3 +69,11 @@ def clean_and_transform_data(
     df = df.sort_values(['ticker', 'date']).drop_duplicates(subset=['ticker', 'date']).reset_index(drop=True)
 
     return df
+
+def compute_returns(series):
+    # log return per ticker
+    return np.log(series / series.shift(1))
+
+def compute_volatility(series, window=20):
+    # rolling std dev of returns (not annualized)
+    return series.rolling(window).std()
